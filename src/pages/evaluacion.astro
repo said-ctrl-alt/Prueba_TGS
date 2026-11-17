@@ -1,0 +1,34 @@
+---
+import StudyLayout from '../layouts/StudyLayout.astro';
+import EvaluationQuiz from '../components/EvaluationQuiz.astro';
+import { topics, unitThreeTitle } from '../data/info';
+---
+
+<StudyLayout
+  title={`Evaluación · ${unitThreeTitle}`}
+  description="Prepara la autoevaluación de la Unidad 3 con una guía de repaso y enlaces a cada tema."
+>
+  <article class="wrap study-page">
+    <a class="unit-link" href="/unidad-3/">← {unitThreeTitle}</a>
+    <p class="eyebrow">Actividad de cierre</p>
+    <h1 class="portal-heading">Evaluación</h1>
+    <p class="lead">Pon a prueba lo aprendido sobre los sistemas, sus elementos, sus propiedades y sus relaciones.</p>
+
+    <h2 class="index-heading">Qué debes poder explicar</h2>
+    <ul class="study-route" role="list">
+      {topics.map(({ id, number, title, review }) => (
+        <li>
+          <span class="topic-number" aria-hidden="true">{number}</span>
+          <div>
+            <h3><a href={`/unidad-3/${id}/`}>{title}</a></h3>
+            <p>{review}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <p>Para practicar con un solo ejemplo, retoma el <a class="unit-link" href="/caso-de-estudio/">caso de la biblioteca</a>.</p>
+
+    <EvaluationQuiz />
+  </article>
+</StudyLayout>

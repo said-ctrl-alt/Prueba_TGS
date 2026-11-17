@@ -1,0 +1,14 @@
+---
+import type { StudyFlow } from '../data/info';
+
+type Props = StudyFlow;
+const { title, steps, note, parallel } = Astro.props;
+---
+
+<figure class="study-figure">
+  <figcaption>{title}</figcaption>
+  <ol class="study-flow" role="list" data-direction={parallel ? 'parallel' : 'forward'}>
+    {steps.map((step) => <li>{step}</li>)}
+  </ol>
+  <p>{note}</p>
+</figure>

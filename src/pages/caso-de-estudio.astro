@@ -1,0 +1,51 @@
+---
+import StudyFlow from '../components/StudyFlow.astro';
+import StudyLayout from '../layouts/StudyLayout.astro';
+import { libraryCase, topicFlows, unitThreeTitle } from '../data/info';
+
+const flow = topicFlows.elementos;
+const reportUrl = '/estudio-de-caso.pdf';
+---
+
+<StudyLayout
+  title={`${libraryCase.title} · Caso de estudio`}
+  description="Aplica la clasificación, los elementos y las propiedades de los sistemas al servicio de préstamo de una biblioteca."
+>
+  <article class="wrap study-page">
+    <a class="unit-link" href="/unidad-3/">← {unitThreeTitle}</a>
+    <p class="eyebrow">Caso de estudio</p>
+    <h1 class="portal-heading">{libraryCase.title}</h1>
+    <p class="lead">{libraryCase.intro}</p>
+
+    <section class="study-figure reading-section" aria-labelledby="informe-titulo">
+      <h2 id="informe-titulo">Informe del caso de estudio</h2>
+      <p>Consulta el desarrollo completo del caso de la Biblioteca Nellit Abuchaibe Abuchaibe.</p>
+      <p class="hero-actions">
+        <a class="button" href={reportUrl}>Abrir informe en PDF</a>
+        <a class="unit-link" href={reportUrl} download>Descargar PDF <span aria-hidden="true">↓</span></a>
+      </p>
+    </section>
+
+    {flow && <StudyFlow {...flow} />}
+
+    <div class="reading-details">
+      {libraryCase.observations.map(([term, definition]) => (
+        <section class="reading-section">
+          <h2>{term}</h2>
+          <p>{definition}</p>
+        </section>
+      ))}
+    </div>
+
+    <section class="reading-section">
+      <h2>Cómo comprobar si el ajuste ayuda</h2>
+      <p>Compara el porcentaje de préstamos devueltos a tiempo en dos periodos similares. Revisa también cuántos préstamos se renovaron y si había reservas pendientes. Esos datos ayudan a interpretar si la diferencia coincide con el cambio que aplicaste.</p>
+    </section>
+
+    <div class="case-question">
+      <p><strong>Para reflexionar</strong></p>
+      <p>{libraryCase.question}</p>
+    </div>
+    <p><a class="button" href="/evaluacion/">Ir a la evaluación <span aria-hidden="true">→</span></a></p>
+  </article>
+</StudyLayout>

@@ -1,0 +1,69 @@
+---
+import StudyLayout from '../layouts/StudyLayout.astro';
+import SystemDiagram from '../components/SystemDiagram.astro';
+import { studyLinks, unitThreeTitle } from '../data/info';
+---
+
+<StudyLayout
+  title={`Teoría General de Sistemas · ${unitThreeTitle}`}
+  description="Fundamentos de la Teoría General de Sistemas y guía de la Unidad 3 sobre clasificación, elementos y propiedades de los sistemas."
+>
+  <figure class="campus-hero">
+    <img
+      class="campus-hero-photo"
+      src="/universidad-de-la-guajira.webp"
+      width="1920"
+      height="1080"
+      alt="Edificios y plazoleta de la Universidad de La Guajira"
+      fetchpriority="high"
+    />
+    <figcaption class="campus-hero-caption">
+      <span class="campus-hero-emblem">
+        <img src="/logo-uniguajira-50-anios.webp" width="500" height="500" alt="Emblema de los 50 años" />
+      </span>
+      <span>Universidad de La Guajira</span>
+    </figcaption>
+  </figure>
+
+  <section class="hero" aria-labelledby="titulo">
+    <div class="wrap hero-inner">
+      <div>
+        <p class="eyebrow">Guía de estudio</p>
+        <h1 id="titulo" class="portal-heading">Teoría General de Sistemas</h1>
+        <p class="lead">Aprende a reconocer un sistema y a explicar su funcionamiento. Luego profundiza en su clasificación, sus elementos y sus propiedades.</p>
+        <div class="hero-actions">
+          <a class="button" href="/fundamentos/">Empezar por los fundamentos <span aria-hidden="true">→</span></a>
+          <a class="unit-link" href="/unidad-3/">{unitThreeTitle} <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <SystemDiagram />
+    </div>
+  </section>
+
+  <section class="wrap syllabus" aria-labelledby="ruta-titulo">
+    <h2 id="ruta-titulo" class="portal-heading">Ruta de estudio</h2>
+    <ol class="topic-grid" role="list">
+      {studyLinks.map(({ href, title }, index) => (
+        <li>
+          <a class="topic-link" href={href}>
+            <span class="topic-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <strong>{title}</strong>
+            <span class="topic-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <figure class="wrap campus-footer-photo">
+    <img
+      src="/campus-riohacha-1.webp"
+      width="1920"
+      height="1072"
+      alt="Vista aérea de los edificios y zonas verdes del Campus Riohacha"
+      loading="lazy"
+      decoding="async"
+    />
+    <figcaption>Campus Riohacha</figcaption>
+  </figure>
+</StudyLayout>
